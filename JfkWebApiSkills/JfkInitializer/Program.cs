@@ -27,7 +27,7 @@ namespace JfkInitializer
         private static string BlobContainerNameForImageStore;
 
         // Set this to true to see additional debugging information in the console.
-        private static bool DebugMode = false;
+        private static bool DebugMode = true;
 
         // Set this to true if you would like this app to deploy the JFK files frontend to your Azure site.
         private static bool ShouldDeployWebsite = true;
@@ -135,13 +135,13 @@ namespace JfkInitializer
                 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["BlobStorageAccountConnectionString"]);
                 CloudBlobClient client = storageAccount.CreateCloudBlobClient();
                 CloudBlobContainer container = client.GetContainerReference(BlobContainerNameForImageStore);
-                await container.CreateIfNotExistsAsync();
+                //await container.CreateIfNotExistsAsync();
                 // Note that setting this permission means that the container will be publically accessible.  This is necessary for
                 // the website to work properly.  Remove these next 3 lines if you start using this code to process any private or
                 // confidential data, but note that the website will stop working properly if you do.
-                BlobContainerPermissions permissions = container.GetPermissions();
-                permissions.PublicAccess = BlobContainerPublicAccessType.Container;
-                await container.SetPermissionsAsync(permissions);
+                //BlobContainerPermissions permissions = container.GetPermissions();
+                //permissions.PublicAccess = BlobContainerPublicAccessType.Container;
+                //await container.SetPermissionsAsync(permissions);
             }
             catch (Exception ex)
             {

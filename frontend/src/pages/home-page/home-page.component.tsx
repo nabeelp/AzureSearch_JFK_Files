@@ -1,6 +1,6 @@
 import * as React from "react";
 import { searchPath } from "../search-page";
-import { LogoJFKComponent } from "../../common/components/logo-jfk";
+import { LogoSBSAComponent } from "../../common/components/logo-sbsa";
 import { SearchButton } from "./components/search";
 import { CaptionComponent } from "./components/caption";
 import { SearchInput } from "./components/search";
@@ -18,7 +18,7 @@ interface HomePageProps {
 export const HomePageComponent: React.StatelessComponent<HomePageProps> = (props) => {
   return (
     <div className={style.container}>
-      <LogoJFKComponent classes={{container: style.logoContainer, svg: style.logoSvg}} />
+      <LogoSBSAComponent classes={{container: style.logoContainer, svg: style.logoSvg}} />
       <div className={style.main}>
         <CaptionComponent />
         <SearchInput         

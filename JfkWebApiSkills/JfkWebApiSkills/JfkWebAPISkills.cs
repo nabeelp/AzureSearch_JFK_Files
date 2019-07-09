@@ -121,7 +121,12 @@ namespace Microsoft.CognitiveSearch.WebApiSkills
                 async (inRecord, outRecord) => {
                     string imageData = inRecord.Data["imageData"] as string;
                     string imageUri = await imageStore.UploadToBlob(imageData, Guid.NewGuid().ToString());
-                    outRecord.Data["imageStoreUri"] = imageUri;
+
+                    // Change the URI to reference a method on the web app to retrieve the actual image
+                    Uri blobUri = new Uri(imageUri);
+                    string proxyUri = GetAppSetting("BlobProxyBaseUrl") + blobUri.AbsolutePath;
+
+                    outRecord.Data["imageStoreUri"] = proxyUri;
                     return outRecord;
                 });
 

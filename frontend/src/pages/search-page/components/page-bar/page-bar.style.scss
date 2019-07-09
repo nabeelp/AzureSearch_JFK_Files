@@ -37,12 +37,13 @@
       .logo-svg {
         flex: 1 1 auto;
         margin: 0 0.5rem;
-        max-height: 2.5rem;
+        max-height: 10rem;
         max-width: 100%;
+        width: 10rem;
 
         @include respond-to-desktop {
-          max-height: 3.5rem;
-        }
+          max-height: 10rem;
+        }      
       }
     }
   }
