@@ -34,7 +34,7 @@ namespace ProxyBlobFile
         public async Task Invoke(HttpContext context)
         {
             // hand to next middleware if we are not dealing with an image
-            if (context.Request.Path.Value.StartsWith("/api/"))
+            if (context.Request.Path.Value.StartsWith("/api/") || context.Request.Path.Value.EndsWith("favicon.ico"))
             {
                 await _next.Invoke(context);
                 return;
@@ -45,6 +45,7 @@ namespace ProxyBlobFile
                 {
                     // Get the blob path being requested and remove the first "/"
                     string blobPath = context.Request.Path.Value.Remove(0, 1);
+                    blobPath = blobPath.Replace("blob-proxy/", "");
 
                     // Get the blob from blob storage.
                     // TODO: Change this to use AD auth instead
